@@ -4,6 +4,7 @@ Copyright 2016
 **/
 #include <iomanip>
 #include <iostream>
+#include <ctype.h>
 using namespace std;
 
 //Structure:
@@ -17,15 +18,6 @@ struct DataS {
   float total_gst6 = 0; 
   char item_label; 
 };
-
-//Only accept letter, not numbers
-char checkLabel(char x)
-{
-if (!((x >= 'a' && x <= 'z') || (x >= 'A' && x <= 'Z'))) 
-   {
-       cout << "ERROR! Invalid Character.\n"; //echo error
-   }return x;
-}
 
 //Selection case
 float test(char p, float lah)
@@ -79,17 +71,25 @@ int main()
    cout <<"---------------------------------------------" << endl;
    cout <<".:: Welcome to GST Calculator! ::. \nInput 1: To start the calculator. \nInput 2: Exit the program\nEnter your action: "; 
    cin >> inputs;
-   if (inputs==2){break;}
+   if (inputs==2)
+   {
+   break;
+   }
    else
    {
    cout << "Enter your Name: ";
    cin >> gstData->name;
+   cin.getline( gstData->name,29);
    cout << "Enter price :   RM"; //2nd line for first string
    cin >> gstData->item_price;
 
    cout << "Enter Item Label : "; //Enter Item Label
    cin >> gstData->item_label;
-      checkLabel(gstData->item_label);
+      if (!isalpha(gstData->item_label))//Only accept letter/Alphanumeric function
+	  {
+	  	cout << "ERROR! Invalid Character. Alphanumeric only\n"; //echo error
+	  	break;
+	  }
       gstData->tax_before = test(gstData->item_label, gstData->item_price);
       gstData->tax_after_prev = gstData->item_price+gstData->tax_before;
       cout <<"---------------------------------------------" << endl;
