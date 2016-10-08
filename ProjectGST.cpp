@@ -2,6 +2,7 @@
 Developed By Pidaus
 Copyright 2016
 **/
+//Starting the header
 #include <iomanip>
 #include <iostream>
 #include <ctype.h>
@@ -10,49 +11,49 @@ using namespace std;
 //Structure:
 struct DataS {
   char name[32];
-  float item_price = 0;
-  float tax_before = 0;
-  float gst6_difftaxb4 = 0; 
-  float tax_after_prev = 0;
-  float gst6_price = 0; 
-  float total_gst6 = 0; 
+  float item_price;
+  float tax_before;
+  float gst6_difftaxb4; 
+  float tax_after_prev;
+  float gst6_price; 
+  float total_gst6; 
   char item_label; 
 };
 
 //Selection case
-float test(char p, float lah)
+float kiraGST(char p, float lah)
 {
-  float kira = 0, jap;
+  float kira = 0;
   if (p =='P' || p == 'p')
   {
-  kira = lah * 10/100;
+  kira = lah * 0.1;
   return kira;
   }
   if (p == 'S' || p == 's')
   {
-  kira = lah * 5/100;
+  kira = lah * 0.05;
   return kira;
   }
   if (!(p == 'p' || p == 'P' || p == 'S' || p == 's'))
   {
-  kira = lah * 0/100;
+  kira = lah * 0;
   return kira;
   }
 }
 //Calculate GST 6% Tax
 float GSTCal(char gst, float huhu)
 {
-  float ntah, si = 0;
+  float si = 0;
   if (gst == 'S' || gst == 's' || gst == 'p' || gst == 'P')
   {
-  si = ntah * 6/100;
-  cout<< "6% tax (GST)  :  RM" << si << endl;
+  si = huhu * 0.06;
+  printf("6%% tax (GST)  :  RM%.2f\n", si);
   return si;
   }
   if (!(gst == 'p' || gst == 'P' || gst == 's' || gst == 'S'))
   {
-  si = gst * 0/100;
-  cout<< "6% tax (GST)  :  RM" << si << endl;
+  si = huhu * 0;
+  printf("6%% tax (GST)  :  RM%.2f\n", si);
   return si;
   }
 }
@@ -79,7 +80,7 @@ int main()
    {
    cout << "Enter your Name: ";
    cin >> gstData->name;
-   cin.getline( gstData->name,29);
+   cin.getline( gstData->name,31);
    cout << "Enter price :   RM"; //2nd line for first string
    cin >> gstData->item_price;
 
@@ -90,18 +91,18 @@ int main()
 	  	cout << "ERROR! Invalid Character. Alphanumeric only\n"; //echo error
 	  	break;
 	  }
-      gstData->tax_before = test(gstData->item_label, gstData->item_price);
+      gstData->tax_before = kiraGST(gstData->item_label, gstData->item_price);
       gstData->tax_after_prev = gstData->item_price+gstData->tax_before;
       cout <<"---------------------------------------------" << endl;
       cout<< "Data you Entered: \nName: "<< gstData->name <<"\nPrice: RM" << gstData->item_price << "\nItem Label: " << gstData->item_label<<endl;
       cout <<"---------------------------------------------" << endl;
-	  cout<< "Price (including previous tax) :  RM" << gstData->tax_after_prev<<endl;
+	  printf("Price (including previous tax) :  RM%.2f\n", gstData->tax_after_prev);
 	  cout<< "Price after excluding previous tax :  RM" << gstData->item_price <<endl;
 	  gstData->gst6_price = GSTCal(gstData->item_label, gstData->item_price);
 	  gstData->total_gst6 = gstData->item_price + gstData->gst6_price;
-      cout << "Price after include 6% tax  :  RM"  << gstData->total_gst6 << endl;
+      printf("Price after include 6%% tax  :  RM%.2f\n", gstData->total_gst6);
       gstData->gst6_difftaxb4 = gstData->gst6_price - gstData->tax_before;
-      cout << "Different price between before and after 6% GST  :  RM" << gstData->gst6_difftaxb4 << endl;
+      printf("Different price between before and after 6%% GST  :  RM%.2f\n", gstData->gst6_difftaxb4);
      // display the output
         
    cout << ".:: Developed by Pidaus ::.\n---------------------------------------------\n\n";
@@ -109,3 +110,4 @@ int main()
 }
    return 0;
 }
+
