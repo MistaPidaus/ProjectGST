@@ -3,9 +3,8 @@ Developed By Pidaus
 Copyright 2016
 **/
 //Starting the header
-#include <iomanip>
 #include <iostream>
-#include <ctype.h>
+#include <ctype.h>//For isalpha function
 using namespace std;
 
 //Structure:
@@ -20,7 +19,7 @@ struct DataS {
   char item_label; 
 };
 
-//Selection case
+//Selection case, Charges of old tax rate to certain label
 float kiraGST(char p, float lah)
 {
   float kira = 0;
@@ -67,20 +66,19 @@ int main()
    gstData = &DataGsT;
 
    while(true)
-   {
+	{
    //Menu:
    cout <<"---------------------------------------------" << endl;
    cout <<".:: Welcome to GST Calculator! ::. \nInput 1: To start the calculator. \nInput 2: Exit the program\nEnter your action: "; 
    cin >> inputs;
    if (inputs==2)
-   {
-   break;
-   }
+		{
+		break;
+		}
    else
-   {
+		{
    cout << "Enter your Name: ";
    cin >> gstData->name;
-   cin.getline( gstData->name,31);
    cout << "Enter price :   RM"; //2nd line for first string
    cin >> gstData->item_price;
 
@@ -106,8 +104,8 @@ int main()
      // display the output
         
    cout << ".:: Developed by Pidaus ::.\n---------------------------------------------\n\n";
-}
-}
+		}
+	}
    return 0;
 }
 
