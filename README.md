@@ -10,9 +10,15 @@ So basically, this project required to include:
 
 -Function 
 
-The project should be display output as below:
+The project question/description details:
 
-https://s13.postimg.org/ou3or9pvr/Screenshot_317.png
+![screenshot_317](https://cloud.githubusercontent.com/assets/21690115/22700254/f1bc2724-ed94-11e6-91f4-468cfa0f0f42.png)
+
+
+Output after compiled :
+
+![screenshot_371](https://cloud.githubusercontent.com/assets/21690115/22700284/17b95122-ed95-11e6-80f0-a5a3506b6b23.png)
+
 
 Problem so far:
 Round off number in two decimal points.
